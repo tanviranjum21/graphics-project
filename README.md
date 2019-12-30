@@ -5,19 +5,19 @@ A small view of a coastal city with a university campus. A man is waiting to go 
 
 Demo View: 
 
-Day View First Screen
+<b>Day View First Screen</b>
 
 <img src = "ImageFiles/DayViewUpdated.png" width="300">
 
-Day View Second Screen
+<b>Day View Second Screen</b>
 
 <img src = "ImageFiles/withDBuilding.png" width="300">
 
-Night View
+<b>Night View</b>
 
 <img src = "ImageFiles/NightView.png" width="300">
 
-Features: 
+<h2><u>Features:</u2></h2> 
 
 1. Sea Beside the road 
 2. Ship is moving with the mouse click 
