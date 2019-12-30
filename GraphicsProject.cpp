@@ -1,4 +1,3 @@
-
 #include<windows.h>
 #include <stdlib.h>
 #include <GL/glut.h>
@@ -7,7 +6,8 @@
 #include<stdio.h>
 #include<cmath>
 #define PI 3.1416
-
+using namespace std;
+float i=0.0;
 float tx = 0.0;
 float ty = 0.0;
 float var_boat = 0.0;
@@ -67,7 +67,8 @@ void my_keyboard(unsigned char key, int x, int y)
 	    //for day night
 
 		case 'd':
-		    glClearColor(.01,.8,.5,0);
+		   // glClearColor(.01,.8,.5,0);
+		   glClearColor(.8, .7, 0, 100);
 			break;
 
 		case 'n':
@@ -78,13 +79,14 @@ void my_keyboard(unsigned char key, int x, int y)
 		     glClearColor(.04,.09,.02,0);
 			 break;
          case 'D':
-              glClearColor(.01,.8,.5,0);
+             // glClearColor(.01,.8,.5,0);
+             glClearColor(.8, .7, 0, 100);
          break;
 
 
 
 
-         // moving the  mushfik 
+         // moving the
 
 
          case 'R':
@@ -102,7 +104,7 @@ void my_keyboard(unsigned char key, int x, int y)
 
 
 
-         //stop the mushfik 
+         //stop the
          case 'S':
               bool_man=false;
               if(bool_car){
@@ -162,10 +164,6 @@ void my_keyboard(unsigned char key, int x, int y)
 
          break;
 
-
-
-
-         //out the mehnaz in font of varsity
 
          case 'A':
              if(tx>=1330 && tx<=1650){
@@ -239,7 +237,6 @@ void mouse(int button, int state, int x, int y)
           glutPostRedisplay();
          break;
 
-    //for mushfik  moving;
     case GLUT_MIDDLE_BUTTON:
         bool_car=false;
         bool_boat=false;
@@ -259,7 +256,7 @@ void mouse(int button, int state, int x, int y)
 
 
 void boat_moving(){
-    //check mushfik is running or not
+
     if(bool_man){
         var_man+=.005;
         glutPostRedisplay();
@@ -310,7 +307,7 @@ void boat_moving2(){
 
 //car moving
 void small_car_moving(){
-    //check vodka man is running or not
+
      if(bool_man){
         var_man+=.005;
         glutPostRedisplay();
@@ -340,7 +337,7 @@ void small_car_moving(){
 
 
 
-//for mushfik moving
+
 void var_man_moving(){
     //check boat is running or not
      if(bool_boat){
@@ -354,15 +351,38 @@ void var_man_moving(){
         glutPostRedisplay();
     }
 
-    //check mushfik is running or not
+    //check man is running or not
     if(bool_man){
-        if(var_man<=23){
-            var_man+=.005;
+        if(i<=3.5 && i >= 0){
+
+            int n = rand() % 3;
+            if(n ==0 )
+            {
+                n =1;
+            }
+            float result = 0.02/n;
+
+            i=i+result;
+            var_man+=result;
+            //cout <<"i first "<<i<<"result"<<result<<endl<<endl<<endl;
             glutPostRedisplay();
         }
-         else{
-            bool_man=false;
+         else if(i >=3.5 && i<= 7 ){
+             float n = rand() % 3;
+             //cout<<"else called"<<endl<<i<<endl;
+              if(n ==0 )
+            {
+                n =1;
+            }
+              float result = 0.015/n;
+              i=i+result;
+             var_man-=result;
             glutPostRedisplay();
+         }
+         else
+         {
+             i = 0;
+             var_man=0;
          }
     }
     else{
@@ -375,7 +395,8 @@ void var_man_moving(){
 
 void init()
 {
-    glClearColor(.01,.9,.5,0);
+   // glClearColor(.01,.9,.5,0);
+   glClearColor(.8, .7, 0, 100);
     glOrtho(0,1800,0,1000,0,1);
 }
 
@@ -383,6 +404,7 @@ void init()
 //road
 
 void road(){
+    glColor3ub(47,79,79);
     glBegin(GL_POLYGON);
     glVertex2f(0,400);
     glVertex2f(1800,400);
@@ -399,15 +421,14 @@ void road(){
 }
 
 
- //read er dag
 void road_strip()
 {
 
-     glColor3ub(255,229,0);
+
     int j =185;
     for(int i=535;i<=1000;i+=80){
         glBegin(GL_POLYGON);
-        glColor3ub(255,229,0);
+        glColor3ub(255,255,255);
         glVertex2f(j,i);
         glVertex2f(j+5,i);
         glVertex2f(j+15,i+50);
@@ -418,7 +439,7 @@ void road_strip()
 
     for(int i=10;i<=1800;i+=100){
         glBegin(GL_POLYGON);
-        glColor3ub(255,229,0);
+        glColor3ub(255,255,255);
         glVertex2f(i,505);
         glVertex2f(i,510);
         glVertex2f(i+50,510);
@@ -433,7 +454,7 @@ void road_strip()
 
 void river()
 {
-     glColor3ub(93,70,69);
+     glColor3ub(14.9,29.02,32.55);
     glBegin(GL_POLYGON);
     glVertex2f(0,0);
     glVertex2f(0,240);
@@ -449,7 +470,7 @@ void river()
     glVertex2f(1800,0);
     glEnd();
 
-     glColor3ub(88,132,169);
+     glColor3ub(173,216,230);
     glBegin(GL_POLYGON);
     glVertex2f(0,0);
     glVertex2f(0,210);
@@ -465,7 +486,7 @@ void river()
     glVertex2f(1800,0);
     glEnd();
 
-    glLineWidth(5);
+    glLineWidth(7);
     glColor3ub(99,145,174);
     glBegin(GL_LINE_STRIP);
     glVertex2f(0,100);
@@ -480,7 +501,7 @@ void river()
     glVertex2f(1800,130);
     glEnd();
 
-     glLineWidth(5);
+     glLineWidth(7);
     glColor3ub(99,145,174);
     glBegin(GL_LINE_STRIP);
     glVertex2f(0,130);
@@ -495,7 +516,7 @@ void river()
     glVertex2f(1800,180);
     glEnd();
 
-     glLineWidth(5);
+     glLineWidth(7);
     glColor3ub(99,145,174);
     glBegin(GL_LINE_STRIP);
     glVertex2f(0,100);
@@ -569,7 +590,7 @@ void building_abd_traslate(){
 //building 3rd translate
 void building_abd_traslate_again_bottom(){
 
-    glColor3ub(100,100,100);
+    glColor3ub(120,100,100);
     glBegin(GL_TRIANGLES);
     glVertex2f(1050,490);
     glVertex2f(1200,490);
@@ -706,7 +727,7 @@ void building2_abd(){
 }
 
 
-//abd first building
+// first building
 void building_abd(){
     glBegin(GL_POLYGON);
     glColor3ub(102, 255, 255);
@@ -727,91 +748,207 @@ void building_abd(){
   glEnd();
 }
 
-//building RIFAT/// campus
+//building /// campus
 
 void building()
 {
     //building
 
-  glBegin(GL_QUADS);
-    glColor3ub(102, 255, 255);
-        glVertex2f(70,85);
-        glVertex2f(100,85);
-        glVertex2f(100,30);
-        glVertex2f(70,30);
-
-  glEnd();
-
-
-
-//gate1
    glBegin(GL_QUADS);
-    glColor3ub(255, 128, 0);
-        glVertex2f(50,30);
-        glVertex2f(50,40);
-        glVertex2f(58,44);
-        glVertex2f(58,30);
+    glColor3ub(128, 128, 128);
+        glVertex2f(30,30);
+        glVertex2f(102,30);
+        glVertex2f(102,70);
+        glVertex2f(30,70);
 
   glEnd();
-
-
-//gate2
-  glBegin(GL_QUADS);
-    glColor3ub(255, 128, 0);
-        glVertex2f(68,30);
-        glVertex2f(75,30);
-        glVertex2f(75,40);
-        glVertex2f(68,44);
-
-  glEnd();
-
-
-
-
-
-window1(1);
-window1(8);
-window1(16);
-window1(24);
-
-window2(1);
-window2(8);
-window2(16);
-window2(24);
-
-window3(1);
-window3(8);
-window3(16);
-window3(24);
-
-window4(1);
-window4(8);
-window4(16);
-window4(24);
-
-
-
-
-//wall-right
-
-glBegin(GL_QUADS);
-    glColor3ub(204, 0, 0);
-        glVertex2f(75,40);
-        glVertex2f(120,40);
-        glVertex2f(120,30);
-        glVertex2f(75,30);
-
-  glEnd();
-
-
-  //wall-left
 
   glBegin(GL_QUADS);
-    glColor3ub(204, 0, 0);
-        glVertex2f(20,30);
-        glVertex2f(20,40);
-        glVertex2f(50,40);
-        glVertex2f(50,30);
+    glColor3ub(168, 204, 215);
+        glVertex2f(34,38);
+        glVertex2f(50,38);
+        glVertex2f(50,46);
+        glVertex2f(34,46);
+
+  glEnd();
+
+   glBegin(GL_QUADS);
+    glColor3ub(168, 204, 215);
+        glVertex2f(50.25,38);
+        glVertex2f(66,38);
+        glVertex2f(66,46);
+        glVertex2f(50.25,46);
+
+  glEnd();
+
+   glBegin(GL_QUADS);
+    glColor3ub(168, 204, 215);
+        glVertex2f(66.25,38);
+        glVertex2f(82,38);
+        glVertex2f(82,46);
+        glVertex2f(66.25,46);
+
+  glEnd();
+
+  glBegin(GL_QUADS);
+    glColor3ub(168, 204, 215);
+        glVertex2f(82.25,38);
+        glVertex2f(98,38);
+        glVertex2f(98,46);
+        glVertex2f(82.25,46);
+
+  glEnd();
+
+   glBegin(GL_QUADS);
+    glColor3ub(168, 204, 215);
+        glVertex2f(34,54);
+        glVertex2f(50,54);
+        glVertex2f(50,62);
+        glVertex2f(34,62);
+
+  glEnd();
+
+   glBegin(GL_QUADS);
+    glColor3ub(168, 204, 215);
+        glVertex2f(50.25,54);
+        glVertex2f(66,54);
+        glVertex2f(66,62);
+        glVertex2f(50.25,62);
+
+  glEnd();
+
+  glBegin(GL_QUADS);
+    glColor3ub(168, 204, 215);
+        glVertex2f(50.25,54);
+        glVertex2f(66,54);
+        glVertex2f(66,62);
+        glVertex2f(50.25,62);
+
+  glEnd();
+
+  glBegin(GL_QUADS);
+    glColor3ub(168, 204, 215);
+        glVertex2f(66.25,54);
+        glVertex2f(82,54);
+        glVertex2f(82,62);
+        glVertex2f(66.25,62);
+
+   glEnd();
+
+   glBegin(GL_QUADS);
+    glColor3ub(168, 204, 215);
+        glVertex2f(82.25,54);
+        glVertex2f(98,54);
+        glVertex2f(98,62);
+        glVertex2f(82.25,62);
+
+  glEnd();
+
+   glBegin(GL_QUADS);
+    glColor3ub(211, 211, 211);
+        glVertex2f(30,70);
+        glVertex2f(102,70);
+        glVertex2f(104.5,73);
+        glVertex2f(32.5,73);
+
+  glEnd();
+
+   glBegin(GL_QUADS);
+    glColor3ub(128, 128, 128);
+        glVertex2f(32.5,73);
+        glVertex2f(104.5,73);
+        glVertex2f(104.5,88);
+        glVertex2f(32.5,88);
+
+  glEnd();
+   //2nd side view
+  glBegin(GL_QUADS);
+    glColor3ub(128, 128, 128);
+        glVertex2f(102,30);
+        glVertex2f(104.5,33);
+        glVertex2f(104.5,73);
+        glVertex2f(102,70);
+
+  glEnd();
+
+   glBegin(GL_QUADS);
+    glColor3ub(168, 204, 215);
+        glVertex2f(34.5,77);
+        glVertex2f(50.5,77);
+        glVertex2f(50.5,84);
+        glVertex2f(34.5,84);
+
+  glEnd();
+
+   glBegin(GL_QUADS);
+    glColor3ub(168, 204, 215);
+        glVertex2f(51,77);
+        glVertex2f(67,77);
+        glVertex2f(67,84);
+        glVertex2f(51,84);
+
+  glEnd();
+
+  glBegin(GL_QUADS);
+    glColor3ub(168, 204, 215);
+        glVertex2f(51,77);
+        glVertex2f(67,77);
+        glVertex2f(67,84);
+        glVertex2f(51,84);
+
+  glEnd();
+
+   glBegin(GL_QUADS);
+    glColor3ub(168, 204, 215);
+        glVertex2f(67.5,77);
+        glVertex2f(83.5,77);
+        glVertex2f(83.5,84);
+        glVertex2f(67.5,84);
+
+  glEnd();
+
+  glBegin(GL_QUADS);
+    glColor3ub(168, 204, 215);
+        glVertex2f(84,77);
+        glVertex2f(100,77);
+        glVertex2f(100,84);
+        glVertex2f(84,84);
+
+  glEnd();
+
+   glBegin(GL_QUADS);
+    glColor3ub(128, 128, 128);
+        glVertex2f(30,30);
+        glVertex2f(12,42);
+        glVertex2f(12,82);
+        glVertex2f(30,70);
+
+  glEnd();
+
+  glBegin(GL_QUADS);
+    glColor3ub(128, 128, 128);
+        glVertex2f(30,70);
+        glVertex2f(12,82);
+        glVertex2f(12,86);
+        glVertex2f(32.5,73);
+
+  glEnd();
+
+   glBegin(GL_QUADS);
+    glColor3ub(128, 128, 128);
+        glVertex2f(32.5,73);
+        glVertex2f(12,86);
+        glVertex2f(12,93);
+        glVertex2f(32.5,93);
+
+  glEnd();
+
+  glBegin(GL_QUADS);
+    glColor3ub(128, 128, 128);
+        glVertex2f(104.5,88);
+        glVertex2f(32.5,88);
+        glVertex2f(12,93);
+        glVertex2f(92,93);
 
   glEnd();
 
@@ -1051,12 +1188,12 @@ void grass()
     glEnd();
 
 
-    glBegin(GL_POLYGON);
+   /* glBegin(GL_POLYGON);
     glVertex2f(160,150);
     glVertex2f(150,150);
     glVertex2f(90,180);
     glEnd();
-
+*/
 }
 
 
@@ -1207,7 +1344,7 @@ void crismas(){
     glEnd();
 }
 
-//bus by Rifat
+
 GLvoid drawCircle(GLdouble xc, GLdouble yc, GLdouble rad)
 {
     GLfloat i;
@@ -1311,7 +1448,7 @@ void bus_final(){
 
 
 
-//----------- car 2 + mushfik moving -------->
+//----------- car 2 + man moving -------->
 
 //disk  for car and others
 void drawDisk(double radius) {
@@ -1327,7 +1464,7 @@ void drawDisk(double radius) {
 
 
 
-//mouth for mushfik and all the started from here
+//mouth for man and all the started from here
 //.....................................
 
 void Mouth(double radius) {
@@ -1383,7 +1520,7 @@ void Hand()
     glColor3f (1.0, 0.8, 0.6);
     glBegin(GL_POLYGON);
     glVertex2f(-0.5,0.5);
-////done by Rifat
+
     glVertex2f(-0.5,-0.5);
     glVertex2f(0.5,-0.5);
     glVertex2f(0.5,0.5);
@@ -1562,11 +1699,6 @@ glPopMatrix();
 }
 
 
-
-
-
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
 //for car wheel
 
 void drawWheel() {
@@ -1676,7 +1808,7 @@ void small_car_rotate(){
 
 
 
-//<------------Drawing Mehnaz for passenger------------------>>
+//<------------Drawing for passenger------------------>>
 
 
 //circle for girl face and other thing
@@ -1700,7 +1832,7 @@ GLint i=0;
 
 
 
-//not proper circle for mehnaz's hair;
+
 GLvoid semi_circle_for_girl(GLdouble rad)
 {
 	GLint points = 110;
@@ -1768,14 +1900,14 @@ GLvoid girldress(void)
 {
     gleg();
     glBegin(GL_POLYGON);
-    glColor3d(.2,0,.2);
+    glColor3d(.4,.1,.3);
     glVertex2f(-.2,.05);
     glVertex2f(.2,.05);
     glVertex2f(.3,-1);
     glVertex2f(-.3,-1);
     glEnd();
     glPushMatrix();
-    glColor3d(.8,0,.4);
+    glColor3d(.2,0,.5);
     glRotated(90,0,0,1);
     semi_circle_for_girl(.33);
     glPopMatrix();
@@ -1805,7 +1937,7 @@ GLvoid girldress(void)
 }
 
 
-//Mehnaz final
+
 GLvoid girl(void)
 {
 
@@ -1847,7 +1979,7 @@ GLvoid girl(void)
 
 void boat(){
 
-     glColor3ub(0,0,251);
+     glColor3ub(112,0,251);
 
     glBegin(GL_POLYGON);
     glVertex2f(100,50);
@@ -1949,7 +2081,30 @@ void boat(){
 }
 
 
+void sun()
+{
+    glPushMatrix();
+    glTranslatef(480,300, 0.0f);
 
+    float x1,y1,x2,y2;
+    float a;
+    double radius=0.1;
+
+      x1=-0.8, y1= 0.7;
+
+      glBegin(GL_TRIANGLE_FAN);
+        glColor3f(239,255,0);
+        for (a=0.0f; a<360.0f; a+=0.2)
+        {
+            x2 = x1+sin(a)*radius;
+            y2 = y1+cos(a)*radius;
+            glVertex2f(x2,y2);
+        }
+
+       glEnd();
+    glPopMatrix();
+
+}
 
 
 
@@ -1957,7 +2112,7 @@ void boat(){
 void first_window()
 {
 
-
+    sun();
     road();
     road_strip();
     busstop();
@@ -2069,12 +2224,27 @@ void first_window()
         glPopMatrix();
 	 }
 
-	 // the second mushfik 
+	 // the second
    glPushMatrix();
 	glTranslatef(320,655, 0);
 	glScalef(60,60,0);
-	glTranslatef(var_man,0, 0);
+	if(tx >= 200 && tx <=450)
+    {
+        if(var_man >= 1.3 && var_man <= 1.)
+        {
+             bool_man = false;
+             var_man =0;
+             i = 0;
+        }
+
+    }
+    else
+    {
+        glTranslatef(0,-var_man, 0);
+    }
+
     Man1();
+    var_man_moving;
 	glPopMatrix();
 
 
@@ -2101,13 +2271,13 @@ void second_window()
     glVertex2f(0,600);
     glEnd();
 
-    glColor3ub(255,229,0);
+    glColor3ub(47,79,79);
 
 
     //second window road strip
     for(int i=10;i<=1800;i+=100){
         glBegin(GL_POLYGON);
-        glColor3ub(255,229,0);
+        glColor3ub(255,255,255);
         glVertex2f(i,505);
         glVertex2f(i,510);
         glVertex2f(i+50,510);
@@ -2273,7 +2443,7 @@ int main()
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowSize(1800,1000);
     glutInitWindowPosition(0,0);
-    glutCreateWindow("BEGINNERS");
+    glutCreateWindow("Variables");
     init();
     glutDisplayFunc(display);
     glutSpecialFunc(spe_key);
@@ -2282,3 +2452,5 @@ int main()
     glutMainLoop();
     return 0;
 }
+
+
