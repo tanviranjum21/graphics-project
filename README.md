@@ -7,4 +7,27 @@ Demo View:
 
 Day View First Screen
 
-<img src = "ImageFiles/DayViewUpdated.png" width="100">
+<img src = "ImageFiles/DayViewUpdated.png" width="300">
+
+Day View Second Screen
+
+<img src = "ImageFiles/withDBuilding.png" width="300">
+
+Night View
+
+<img src = "ImageFiles/NightView.png" width="300">
+
+Features: 
+
+1. Sea Beside the road 
+2. Ship is moving with the mouse click 
+3. Man is waiting to go across the road 
+4. If the got crash by the bus the man will die 
+5. The man will start moving after pressing "R" and stop movingif we press "S" 
+6. Bus will move with the keyboard indicator sign 
+7. Woman will waiting for the bus in the stand 
+8. After pressing "Y" the woman will hop in the bus 
+9. After reached the campus by pressing "a/A" she will get down 
+10. AIUB D Building as a campus structure 
+11. Christmas trees and grasses 
+
